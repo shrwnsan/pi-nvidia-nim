@@ -127,11 +127,11 @@ const THINKING_CONFIGS: Record<string, ThinkingConfig> = {
 		enableKwargs: { enable_thinking: true },
 		disableKwargs: { enable_thinking: false },
 	},
-	"qwen/qwen3-5-122b-a10b": {
+	"qwen/qwen3.5-122b-a10b": {
 		enableKwargs: { enable_thinking: true },
 		disableKwargs: { enable_thinking: false },
 	},
-	"qwen/qwen3-5-397b-a17b": {
+	"qwen/qwen3.5-397b-a17b": {
 		enableKwargs: { enable_thinking: true },
 		disableKwargs: { enable_thinking: false },
 	},
@@ -305,8 +305,8 @@ const CONTEXT_WINDOWS: Record<string, number> = {
 	"qwen/qwen2.5-coder-32b-instruct": 131072,
 	"qwen/qwen2.5-coder-7b-instruct": 131072,
 	"qwen/qwen3-235b-a22b": 131072,
-	"qwen/qwen3-5-122b-a10b": 131072,
-	"qwen/qwen3-5-397b-a17b": 131072,
+	"qwen/qwen3.5-122b-a10b": 131072,
+	"qwen/qwen3.5-397b-a17b": 131072,
 	"qwen/qwen3-coder-480b-a35b-instruct": 262144,
 	"qwen/qwen3-next-80b-a3b-instruct": 131072,
 	"qwen/qwen3-next-80b-a3b-thinking": 131072,
@@ -421,8 +421,8 @@ const FEATURED_MODELS = [
 	"bytedance/seed-oss-36b-instruct",
 	// Qwen
 	"qwen/qwen3-coder-480b-a35b-instruct",
-	"qwen/qwen3-5-397b-a17b",
-	"qwen/qwen3-5-122b-a10b",
+	"qwen/qwen3.5-397b-a17b",
+	"qwen/qwen3.5-122b-a10b",
 	"qwen/qwen3-235b-a22b",
 	"qwen/qwen3-next-80b-a3b-instruct",
 	"qwen/qwen3-next-80b-a3b-thinking",
