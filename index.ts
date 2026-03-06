@@ -499,10 +499,10 @@ function nimStreamSimple(
 			if (thinkingConfig) {
 				if (isThinkingEnabled) {
 					// Inject chat_template_kwargs to enable thinking
-					p.chat_template_kwargs = thinkingConfig.enableKwargs;
+					p.chat_template_kwargs = { ...thinkingConfig.enableKwargs };
 				} else if (thinkingConfig.disableKwargs) {
 					// Explicitly disable thinking (some models think by default, e.g. GLM-5/4.7)
-					p.chat_template_kwargs = thinkingConfig.disableKwargs;
+					p.chat_template_kwargs = { ...thinkingConfig.disableKwargs };
 				}
 			}
 
@@ -522,7 +522,7 @@ function nimStreamSimple(
 						const parts = msg.content as Array<Record<string, unknown>>;
 						const allText = parts.every((part) => part.type === "text");
 						if (allText) {
-							msg.content = parts.map((part) => part.text as string).join("\n");
+							msg.content = parts.map((part) => part.text as string).join("");
 						}
 					}
 				}
@@ -565,8 +565,8 @@ function buildModelEntry(modelId: string): NimModelEntry | null {
 
 	const isReasoning = REASONING_MODELS.has(modelId);
 	const isVision = VISION_MODELS.has(modelId);
-	const contextWindow = CONTEXT_WINDOWS[modelId] ?? 4096;
-	const maxTokens = MAX_TOKENS[modelId] ?? Math.min(2048, contextWindow);
+	const contextWindow = CONTEXT_WINDOWS[modelId] ?? 32768;
+	const maxTokens = MAX_TOKENS[modelId] ?? Math.min(8192, contextWindow);
 
 	const entry: NimModelEntry = {
 		id: modelId,
@@ -623,7 +623,8 @@ async function fetchNimModels(apiKey: string): Promise<string[]> {
 
 		const data = (await response.json()) as { data: NimApiModel[] };
 		return data.data?.map((m) => m.id) ?? [];
-	} catch {
+	} catch (error) {
+		console.warn("[nvidia-nim] Failed to fetch model list:", error instanceof Error ? error.message : String(error));
 		return [];
 	}
 }
@@ -655,7 +656,7 @@ export default function (pi: ExtensionAPI) {
 	});
 
 	// On session start, discover additional models from the API
-	pi.on("session_start", async (_event: any, ctx: any) => {
+	pi.on("session_start", async (_event: unknown, ctx: { modelRegistry: { registerProvider: typeof pi.registerProvider } }) => {
 		const apiKey = process.env[NVIDIA_NIM_API_KEY_ENV];
 		if (!apiKey) return; // API key not available, skip model discovery
 
