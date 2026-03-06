@@ -499,10 +499,10 @@ function nimStreamSimple(
 			if (thinkingConfig) {
 				if (isThinkingEnabled) {
 					// Inject chat_template_kwargs to enable thinking
-					p.chat_template_kwargs = thinkingConfig.enableKwargs;
+					p.chat_template_kwargs = { ...thinkingConfig.enableKwargs };
 				} else if (thinkingConfig.disableKwargs) {
 					// Explicitly disable thinking (some models think by default, e.g. GLM-5/4.7)
-					p.chat_template_kwargs = thinkingConfig.disableKwargs;
+					p.chat_template_kwargs = { ...thinkingConfig.disableKwargs };
 				}
 			}
 
@@ -522,7 +522,7 @@ function nimStreamSimple(
 						const parts = msg.content as Array<Record<string, unknown>>;
 						const allText = parts.every((part) => part.type === "text");
 						if (allText) {
-							msg.content = parts.map((part) => part.text as string).join(" ");
+							msg.content = parts.map((part) => part.text as string).join("");
 						}
 					}
 				}
@@ -624,7 +624,7 @@ async function fetchNimModels(apiKey: string): Promise<string[]> {
 		const data = (await response.json()) as { data: NimApiModel[] };
 		return data.data?.map((m) => m.id) ?? [];
 	} catch (error) {
-		console.warn("NVIDIA NIM: Failed to fetch model list:", error instanceof Error ? error.message : String(error));
+		console.warn("[nvidia-nim] Failed to fetch model list:", error instanceof Error ? error.message : String(error));
 		return [];
 	}
 }
