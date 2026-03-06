@@ -537,7 +537,7 @@ function nimStreamSimple(
 						const parts = msg.content as Array<Record<string, unknown>>;
 						const allText = parts.every((part) => part.type === "text");
 						if (allText) {
-							msg.content = parts.map((part) => part.text as string).join("");
+							msg.content = parts.map((part) => part.text as string).join(" ");
 						}
 					}
 				}
