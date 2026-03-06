@@ -127,6 +127,14 @@ const THINKING_CONFIGS: Record<string, ThinkingConfig> = {
 		enableKwargs: { enable_thinking: true },
 		disableKwargs: { enable_thinking: false },
 	},
+	"qwen/qwen3-5-122b-a10b": {
+		enableKwargs: { enable_thinking: true },
+		disableKwargs: { enable_thinking: false },
+	},
+	"qwen/qwen3-5-397b-a17b": {
+		enableKwargs: { enable_thinking: true },
+		disableKwargs: { enable_thinking: false },
+	},
 	"qwen/qwen3-coder-480b-a35b-instruct": {
 		enableKwargs: { enable_thinking: true },
 		disableKwargs: { enable_thinking: false },
@@ -249,6 +257,7 @@ const CONTEXT_WINDOWS: Record<string, number> = {
 	// MiniMax
 	"minimaxai/minimax-m2": 1048576,
 	"minimaxai/minimax-m2.1": 1048576,
+	"minimaxai/minimax-m2.5": 1048576,
 	// Meta Llama
 	"meta/llama-3.1-405b-instruct": 131072,
 	"meta/llama-3.1-70b-instruct": 131072,
@@ -296,6 +305,8 @@ const CONTEXT_WINDOWS: Record<string, number> = {
 	"qwen/qwen2.5-coder-32b-instruct": 131072,
 	"qwen/qwen2.5-coder-7b-instruct": 131072,
 	"qwen/qwen3-235b-a22b": 131072,
+	"qwen/qwen3-5-122b-a10b": 131072,
+	"qwen/qwen3-5-397b-a17b": 131072,
 	"qwen/qwen3-coder-480b-a35b-instruct": 262144,
 	"qwen/qwen3-next-80b-a3b-instruct": 131072,
 	"qwen/qwen3-next-80b-a3b-thinking": 131072,
@@ -373,6 +384,7 @@ const MAX_TOKENS: Record<string, number> = {
 	"moonshotai/kimi-k2-thinking": 16384,
 	"minimaxai/minimax-m2": 8192,
 	"minimaxai/minimax-m2.1": 8192,
+	"minimaxai/minimax-m2.5": 8192,
 	"meta/llama-4-maverick-17b-128e-instruct": 16384,
 	"meta/llama-4-scout-17b-16e-instruct": 16384,
 	"z-ai/glm4.7": 16384,
@@ -398,6 +410,7 @@ const FEATURED_MODELS = [
 	"moonshotai/kimi-k2-thinking",
 	"moonshotai/kimi-k2-instruct",
 	"moonshotai/kimi-k2-instruct-0905",
+	"minimaxai/minimax-m2.5",
 	"minimaxai/minimax-m2.1",
 	"minimaxai/minimax-m2",
 	"z-ai/glm5",
@@ -408,6 +421,8 @@ const FEATURED_MODELS = [
 	"bytedance/seed-oss-36b-instruct",
 	// Qwen
 	"qwen/qwen3-coder-480b-a35b-instruct",
+	"qwen/qwen3-5-397b-a17b",
+	"qwen/qwen3-5-122b-a10b",
 	"qwen/qwen3-235b-a22b",
 	"qwen/qwen3-next-80b-a3b-instruct",
 	"qwen/qwen3-next-80b-a3b-thinking",
